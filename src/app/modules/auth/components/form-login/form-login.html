@@ -1,0 +1,83 @@
+<div class="tw:max-w-lg tw:w-full">
+  <div
+    style="box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+    class="tw:bg-gray-800 tw:rounded-lg tw:shadow-xl tw:overflow-hidden"
+  >
+    <div class="tw:p-8">
+      <h2 class="tw:text-center tw:text-3xl tw:font-extrabold tw:text-white">
+        Bienvenido de nuevo
+      </h2>
+      <p class="tw:mt-4 tw:text-center tw:text-gray-400">Inicia sesión para continuar</p>
+      <form [formGroup]="getFormLogin" class="tw:mt-8 tw:space-y-6">
+        <div class="tw:rounded-md tw:shadow-sm">
+          <div class="tw:w-full">
+            <input
+              placeholder="Dirección de correo electronico"
+              class="tw:appearance-none tw:relative tw:block tw:w-full tw:px-3 tw:py-3 tw:border tw:border-gray-700 tw:bg-gray-700 tw:text-white tw:rounded-md tw:focus:outline-none tw:focus:ring-indigo-500 tw:focus:border-indigo-500 tw:focus:z-10 tw:sm:text-sm"
+              required=""
+              autocomplete="email"
+              formControlName="email"
+              type="email"
+              name="email"
+              id="email"
+            />
+            <!-- <div *ngIf=""> </div> -->
+            @if(isValidControl('email')){
+            <strong class="tw:text-red-500"> {{ getError('email') }} </strong>
+            }
+          </div>
+          <div class="tw:mt-4">
+            <label class="tw:sr-only" for="password">Contraseña</label>
+            <input
+              placeholder="Contraseña"
+              class="tw:appearance-none tw:relative tw:block tw:w-full tw:px-3 tw:py-3 tw:border tw:border-gray-700 tw:bg-gray-700 tw:text-white tw:rounded-md tw:focus:outline-none tw:focus:ring-indigo-500 tw:focus:border-indigo-500 tw:focus:z-10 tw:sm:text-sm"
+              required=""
+              autocomplete="current-password"
+              type="password"
+              name="password"
+              formControlName="password"
+              id="password"
+            />
+            @if(isValidControl('password')){
+            <strong class="tw:text-red-500"> {{ getError('password', 'contraseña' ) }} </strong>
+            }
+          </div>
+        </div>
+
+        <div class="tw:flex tw:items-center tw:justify-between tw:t-4">
+          <div class="tw:flex tw:items-center">
+            <input
+              class="tw:h-4 tw:w-4 tw:text-indigo-500 tw:focus:ring-indigo-400 tw:border-gray-600 tw:rounded"
+              type="checkbox"
+              name="remember-me"
+              id="remember-me"
+            />
+            <label class="tw:ml-2 tw:block tw:text-sm tw:text-gray-400" for="remember-me"
+              >Recuerdame</label
+            >
+          </div>
+
+          <div class="tw:text-sm">
+            <a class="tw:font-medium tw:text-indigo-500 tw:hover:text-indigo-400" href="#">
+              Olvidades tu contraseña?
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <button
+            class="tw:group tw:relative tw:w-full tw:flex tw:justify-center tw:py-3 tw:px-4 tw:border tw:border-transparent tw:text-sm tw:font-medium tw:rounded-md tw:text-gray-900 tw:bg-indigo-500 tw:hover:bg-indigo-600 tw:focus:outline-none tw:focus:ring-2 tw:focus:ring-offset-2 tw:focus:ring-indigo-500"
+            type="submit"
+            (click)="onLogin()"
+          >
+            Iniciar sesión
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="tw:px-8 tw:py-4 tw:bg-gray-700 tw:text-center">
+      <span class="tw:text-gray-400">No tienes cuenta? </span>
+      <a class="tw:font-medium tw:text-indigo-500 tw:hover:text-indigo-400" href="#">Crea una</a>
+    </div>
+  </div>
+</div>

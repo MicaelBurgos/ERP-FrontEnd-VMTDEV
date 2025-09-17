@@ -30,7 +30,8 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/tailwind.css"
             ]
           },
           "configurations": {
@@ -47,7 +48,13 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/app/environments/environments.ts",
+                  "with": "src/app/environments/environments.prod.ts"
+                }
+              ]
             },
             "development": {
               "optimization": false,
@@ -88,11 +95,15 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/tailwind.css"
             ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
