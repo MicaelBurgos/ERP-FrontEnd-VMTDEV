@@ -11,7 +11,7 @@
       <form [formGroup]="getFormLogin" class="tw:mt-8 tw:space-y-6">
         <div class="tw:rounded-md tw:shadow-sm">
           <div class="tw:w-full">
-            <input
+            <!-- <input
               placeholder="Dirección de correo electronico"
               class="tw:appearance-none tw:relative tw:block tw:w-full tw:px-3 tw:py-3 tw:border tw:border-gray-700 tw:bg-gray-700 tw:text-white tw:rounded-md tw:focus:outline-none tw:focus:ring-indigo-500 tw:focus:border-indigo-500 tw:focus:z-10 tw:sm:text-sm"
               required=""
@@ -21,14 +21,26 @@
               name="email"
               id="email"
             />
-            <!-- <div *ngIf=""> </div> -->
             @if(isValidControl('email')){
             <strong class="tw:text-red-500"> {{ getError('email') }} </strong>
-            }
+            } -->
+            <mat-form-field appearance="outline" class="tw:w-full">
+              <mat-label>Dirección de correo electronico</mat-label>
+              <input
+                matInput
+                placeholder="correo@example.com"
+                formControlName="email"
+                (blur)="getError('email')"
+                required
+              />
+              @if (isValidControl('email')) {
+              <mat-error>{{ getError('email') }}</mat-error>
+              }
+            </mat-form-field>
           </div>
           <div class="tw:mt-4">
             <label class="tw:sr-only" for="password">Contraseña</label>
-            <input
+            <!-- <input
               placeholder="Contraseña"
               class="tw:appearance-none tw:relative tw:block tw:w-full tw:px-3 tw:py-3 tw:border tw:border-gray-700 tw:bg-gray-700 tw:text-white tw:rounded-md tw:focus:outline-none tw:focus:ring-indigo-500 tw:focus:border-indigo-500 tw:focus:z-10 tw:sm:text-sm"
               required=""
@@ -39,8 +51,18 @@
               id="password"
             />
             @if(isValidControl('password')){
-            <strong class="tw:text-red-500"> {{ getError('password', 'contraseña' ) }} </strong>
-            }
+            <strong class="tw:text-red-500"> {{ getError('password', 'contraseña') }} </strong>
+            } -->
+            <mat-form-field class="tw:w-full">
+              <mat-label>Escribe tu contraseña</mat-label>
+              <input matInput formControlName="password" [type]="hide() ? 'password' : 'text'" />
+              @if (isValidControl('password')) {
+              <mat-error>{{ getError('password', 'contraseña') }}</mat-error>
+              }
+              <button matIconButton matSuffix (click)="clickEvent($event)">
+                <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+            </mat-form-field>
           </div>
         </div>
 
