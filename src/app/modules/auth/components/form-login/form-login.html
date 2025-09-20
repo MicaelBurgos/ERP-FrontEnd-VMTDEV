@@ -1,30 +1,19 @@
-<div class="tw:max-w-lg tw:w-full">
+<div class="tw:max-w-lg tw:w-full tw:px-5">
   <div
-    style="box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-    class="tw:bg-gray-800 tw:rounded-lg tw:shadow-xl tw:overflow-hidden"
+    style="box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);"
+    class=" tw:bg-gray-200 tw:rounded-lg tw:shadow-2xl tw:overflow-hidden"
   >
     <div class="tw:p-8">
-      <h2 class="tw:text-center tw:text-3xl tw:font-extrabold tw:text-white">
-        Bienvenido de nuevo
+      <h2 class="tw:text-center tw:text-3xl tw:font-extrabold tw:text-gray-800">
+        Bienvenido a ERP_FrontEnd
       </h2>
-      <p class="tw:mt-4 tw:text-center tw:text-gray-400">Inicia sesión para continuar</p>
+      <p class="tw:mt-4 tw:text-center tw:text-gray-800">Inicia sesión para continuar</p>
       <form [formGroup]="getFormLogin" class="tw:mt-8 tw:space-y-6">
-        <div class="tw:rounded-md tw:shadow-sm">
+        <div class="tw:rounded-md">
           <div class="tw:w-full">
-            <!-- <input
-              placeholder="Dirección de correo electronico"
-              class="tw:appearance-none tw:relative tw:block tw:w-full tw:px-3 tw:py-3 tw:border tw:border-gray-700 tw:bg-gray-700 tw:text-white tw:rounded-md tw:focus:outline-none tw:focus:ring-indigo-500 tw:focus:border-indigo-500 tw:focus:z-10 tw:sm:text-sm"
-              required=""
-              autocomplete="email"
-              formControlName="email"
-              type="email"
-              name="email"
-              id="email"
-            />
-            @if(isValidControl('email')){
-            <strong class="tw:text-red-500"> {{ getError('email') }} </strong>
-            } -->
-            <mat-form-field appearance="outline" class="tw:w-full">
+            <mat-form-field appearance="outline" floatLabel="always" class="tw:w-full">
               <mat-label>Dirección de correo electronico</mat-label>
               <input
                 matInput
@@ -39,23 +28,9 @@
             </mat-form-field>
           </div>
           <div class="tw:mt-4">
-            <label class="tw:sr-only" for="password">Contraseña</label>
-            <!-- <input
-              placeholder="Contraseña"
-              class="tw:appearance-none tw:relative tw:block tw:w-full tw:px-3 tw:py-3 tw:border tw:border-gray-700 tw:bg-gray-700 tw:text-white tw:rounded-md tw:focus:outline-none tw:focus:ring-indigo-500 tw:focus:border-indigo-500 tw:focus:z-10 tw:sm:text-sm"
-              required=""
-              autocomplete="current-password"
-              type="password"
-              name="password"
-              formControlName="password"
-              id="password"
-            />
-            @if(isValidControl('password')){
-            <strong class="tw:text-red-500"> {{ getError('password', 'contraseña') }} </strong>
-            } -->
-            <mat-form-field class="tw:w-full">
+            <mat-form-field appearance="outline" floatLabel="always" class="tw:w-full">
               <mat-label>Escribe tu contraseña</mat-label>
-              <input matInput formControlName="password" [type]="hide() ? 'password' : 'text'" />
+              <input matInput formControlName="password" placeholder="Contraseña" [type]="hide() ? 'password' : 'text'" />
               @if (isValidControl('password')) {
               <mat-error>{{ getError('password', 'contraseña') }}</mat-error>
               }
@@ -73,14 +48,15 @@
               type="checkbox"
               name="remember-me"
               id="remember-me"
+              formControlName="rememberme"
             />
-            <label class="tw:ml-2 tw:block tw:text-sm tw:text-gray-400" for="remember-me"
+            <label class="tw:ml-2 tw:block tw:text-sm tw:text-gray-800" for="remember-me"
               >Recuerdame</label
             >
           </div>
 
           <div class="tw:text-sm">
-            <a class="tw:font-medium tw:text-indigo-500 tw:hover:text-indigo-400" href="#">
+            <a class="tw:font-medium tw:text-gray-800 tw:hover:text-gray-400" href="#">
               Olvidades tu contraseña?
             </a>
           </div>
@@ -88,7 +64,7 @@
 
         <div>
           <button
-            class="tw:group tw:relative tw:w-full tw:flex tw:justify-center tw:py-3 tw:px-4 tw:border tw:border-transparent tw:text-sm tw:font-medium tw:rounded-md tw:text-gray-900 tw:bg-indigo-500 tw:hover:bg-indigo-600 tw:focus:outline-none tw:focus:ring-2 tw:focus:ring-offset-2 tw:focus:ring-indigo-500"
+            class="tw:group tw:relative tw:w-full tw:flex tw:justify-center tw:py-3 tw:px-4 tw:border tw:border-transparent tw:text-sm tw:font-medium tw:rounded-md tw:text-white tw:bg-gray-800 tw:hover:bg-gray-600 tw:focus:outline-none tw:focus:ring-2 tw:focus:ring-offset-2 tw:focus:ring-gray-500"
             type="submit"
             (click)="onLogin()"
           >
@@ -97,9 +73,9 @@
         </div>
       </form>
     </div>
-    <div class="tw:px-8 tw:py-4 tw:bg-gray-700 tw:text-center">
-      <span class="tw:text-gray-400">No tienes cuenta? </span>
-      <a class="tw:font-medium tw:text-indigo-500 tw:hover:text-indigo-400" href="#">Crea una</a>
+    <div class="tw:px-8 tw:py-4 tw:bg-gray-200 tw:text-center">
+      <span class="tw:text-gray-600">No tienes cuenta? </span>
+      <a class="tw:font-medium tw:text-gray-800 tw:hover:text-indigo-400" (click)="redirect('/auth/register')">Crea una</a>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, OnDestroy, ViewChild } from '@angular/core';
 import {
   ReactiveFormsModule,
 } from '@angular/forms';
@@ -8,6 +8,7 @@ import { IFormLogin } from '../../interfaces/IFormLogin.interface';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,8 +19,11 @@ import { MessageService } from 'primeng/api';
 })
 export class Login {
 
+  @ViewChild('appFormLogin', { static: false}) appFormLogin?: ElementRef<HTMLDivElement>
+
   private readonly _authService = inject(AuthService)
   private readonly _toastr = inject(ToastrService)
+  private readonly _router = inject(Router)
 
   login(value: IFormLogin){
      const { email, password } = value
@@ -27,7 +31,6 @@ export class Login {
      this._authService.login({ email, password }).subscribe({
       next: (res) => {
         if(res.code.toString().includes('20')){
-
           this._toastr.success(res.message, 'Transacción Exítosa')
         } else {
           this._toastr.error(res.message, 'Ocurrio un problema')
@@ -43,6 +46,16 @@ export class Login {
 
       }
      })
+  }
+
+  redirect(path: string): void {
+    if(this.appFormLogin){
+      this.appFormLogin?.nativeElement.classList.add('animate__fadeOutDown')
+    }
+    setTimeout(() => {
+      this._router.navigateByUrl(path);
+    }, 1000);
+
   }
 }
 
