@@ -1,0 +1,114 @@
+<div class="tw:max-w-[650px] tw:w-full tw:p-5">
+  <div
+    style="
+      box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.75);
+      -webkit-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    "
+    class="tw:bg-gray-200 tw:rounded-lg tw:shadow-2xl tw:overflow-hidden"
+  >
+    <div class="tw:p-8">
+      <h2 class="tw:text-center tw:text-3xl tw:font-extrabold tw:text-gray-800">
+        Registrate en ERP_FrontEnd
+      </h2>
+      <p class="tw:mt-4 tw:text-center tw:text-gray-800">Llena tus datos para continuar</p>
+      <form [formGroup]="getFormRegister" class="tw:mt-8 tw:space-y-6">
+        <div class="tw:rounded-md">
+          <div class="tw:w-full tw:grid tw:grid-cols-1 tw:md:grid-cols-2 tw:gap-3">
+            <mat-form-field appearance="outline" floatLabel="always" class="tw:w-full tw:mb-5">
+              <mat-label>Nombres</mat-label>
+              <input
+                matInput
+                placeholder=""
+                formControlName="firstNames"
+                (blur)="getError('firstNames')"
+                required
+              />
+              @if (isValidControl('firstNames')) {
+              <mat-error>{{ getError('firstNames', 'nombre') }}</mat-error>
+              }
+            </mat-form-field>
+            <mat-form-field appearance="outline" floatLabel="always" class="tw:w-full tw:mb-5">
+              <mat-label>Apellidos</mat-label>
+              <input
+                matInput
+                placeholder=""
+                formControlName="lastNames"
+                (blur)="getError('lastNames')"
+                required
+              />
+              @if (isValidControl('lastNames')) {
+              <mat-error>{{ getError('lastNames', 'apellido') }}</mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <div class="tw:w-full">
+            <mat-form-field appearance="outline" floatLabel="always" class="tw:w-full">
+              <mat-label>Ingresa tu direccion de correo electronico</mat-label>
+              <input
+                matInput
+                placeholder="correo@example.com"
+                formControlName="email"
+                (blur)="getError('email')"
+                required
+              />
+              @if (isValidControl('email')) {
+              <mat-error>{{ getError('email') }}</mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <div class="tw:mt-4 tw:grid tw:grid-cols-1 tw:sm:grid-cols-2 tw:gap-3">
+            <mat-form-field appearance="outline" floatLabel="always" class="tw:w-full">
+              <mat-label>Escribe tu contraseña</mat-label>
+              <input
+                matInput
+                formControlName="password"
+                placeholder="Minimo 8 caracteres"
+                [type]="hide() ? 'password' : 'text'"
+              />
+              @if (isValidControl('password')) {
+              <mat-error>{{ getError('password', 'contraseña') }}</mat-error>
+              }
+              <button matIconButton matSuffix (click)="clickEvent($event)">
+                <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+            </mat-form-field>
+            <mat-form-field appearance="outline" floatLabel="always" class="tw:w-full">
+              <mat-label>Vuelve a escribir tu contraseña</mat-label>
+              <input
+                matInput
+                formControlName="repeatPassword"
+                placeholder=""
+                [type]="hide() ? 'password' : 'text'"
+              />
+              @if (isValidControl('repeatPassword')) {
+              <mat-error>{{ getError('repeatPassword', 'contraseña') }}</mat-error>
+              }
+              <button matIconButton matSuffix (click)="clickEvent($event)">
+                <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div>
+          <button
+            class="tw:group tw:relative tw:w-full tw:flex tw:justify-center tw:py-3 tw:px-4 tw:border tw:border-transparent tw:text-sm tw:font-medium tw:rounded-md tw:text-white tw:bg-gray-800 tw:hover:bg-gray-600 tw:focus:outline-none tw:focus:ring-2 tw:focus:ring-offset-2 tw:focus:ring-gray-500"
+            type="submit"
+            (click)="onRegister()"
+          >
+            Registrate
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="tw:px-8 tw:py-4 tw:bg-gray-200 tw:text-center">
+      <span class="tw:text-gray-600">Ya tienes cuenta? </span>
+      <a
+        class="tw:font-medium tw:text-gray-800 tw:hover:text-indigo-400"
+        (click)="redirect('/auth/login')"
+        >Inicia sesión</a
+      >
+    </div>
+  </div>
+</div>
